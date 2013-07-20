@@ -24,7 +24,7 @@ namespace Notechest.Controllers
         //
         // GET: /Organizations/Details/5
 
-        public ActionResult Details(int id = 0)
+        public ActionResult Details(Guid id)
         {
             Organization organization = db.Organizations.Find(id);
             if (organization == null)
@@ -51,6 +51,7 @@ namespace Notechest.Controllers
         {
             if (ModelState.IsValid)
             {
+                organization.ID = Guid.NewGuid();
                 db.Organizations.Add(organization);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -62,7 +63,7 @@ namespace Notechest.Controllers
         //
         // GET: /Organizations/Edit/5
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult Edit(Guid id)
         {
             Organization organization = db.Organizations.Find(id);
             if (organization == null)
@@ -91,7 +92,7 @@ namespace Notechest.Controllers
         //
         // GET: /Organizations/Delete/5
 
-        public ActionResult Delete(int id = 0)
+        public ActionResult Delete(Guid id)
         {
             Organization organization = db.Organizations.Find(id);
             if (organization == null)
@@ -106,7 +107,7 @@ namespace Notechest.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(Guid id)
         {
             Organization organization = db.Organizations.Find(id);
             db.Organizations.Remove(organization);

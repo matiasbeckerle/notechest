@@ -14,19 +14,19 @@
         <legend>Project</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
-
-        <div class="editor-label">
             @Html.LabelFor(model => model.OrganizationID, "Organization")
         </div>
         <div class="editor-field">
             @Html.DropDownList("OrganizationID", String.Empty)
             @Html.ValidationMessageFor(model => model.OrganizationID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
         </div>
 
         <p>

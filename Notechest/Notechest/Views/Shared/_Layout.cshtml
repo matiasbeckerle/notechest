@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>@ViewBag.Title - Notechest</title>
     @Styles.Render("~/Content/bootstrap")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -26,6 +26,7 @@
                     <ul class="nav">
                         <li><a href="#">Home</a></li>
                         <li class="active">@Html.ActionLink("Projects", "Index", "Projects")</li>
+                        <li>@Html.ActionLink("Organizations", "Index", "Organizations")</li>
                     </ul>
                 </div>
                 <!--/.nav-collapse -->

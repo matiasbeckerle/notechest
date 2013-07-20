@@ -14,6 +14,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Message)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastModified)
+        </th>
         <th></th>
     </tr>
 
@@ -21,6 +27,12 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Message)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastModified)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

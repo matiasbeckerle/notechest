@@ -24,7 +24,7 @@ namespace Notechest.Controllers
         //
         // GET: /Notes/Details/5
 
-        public ActionResult Details(int id = 0)
+        public ActionResult Details(Guid id)
         {
             Note note = db.Notes.Find(id);
             if (note == null)
@@ -51,6 +51,7 @@ namespace Notechest.Controllers
         {
             if (ModelState.IsValid)
             {
+                note.ID = Guid.NewGuid();
                 db.Notes.Add(note);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -62,7 +63,7 @@ namespace Notechest.Controllers
         //
         // GET: /Notes/Edit/5
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult Edit(Guid id)
         {
             Note note = db.Notes.Find(id);
             if (note == null)
@@ -91,7 +92,7 @@ namespace Notechest.Controllers
         //
         // GET: /Notes/Delete/5
 
-        public ActionResult Delete(int id = 0)
+        public ActionResult Delete(Guid id)
         {
             Note note = db.Notes.Find(id);
             if (note == null)
@@ -106,7 +107,7 @@ namespace Notechest.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(Guid id)
         {
             Note note = db.Notes.Find(id);
             db.Notes.Remove(note);

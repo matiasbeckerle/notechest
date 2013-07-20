@@ -10,6 +10,13 @@
     <legend>Project</legend>
 
     <div class="display-label">
+         @Html.DisplayNameFor(model => model.Organization.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Organization.Name)
+    </div>
+
+    <div class="display-label">
          @Html.DisplayNameFor(model => model.Name)
     </div>
     <div class="display-field">
@@ -17,10 +24,17 @@
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Organization.Name)
+         @Html.DisplayNameFor(model => model.CreatedOn)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Organization.Name)
+        @Html.DisplayFor(model => model.CreatedOn)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastModified)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastModified)
     </div>
 </fieldset>
 <p>

@@ -10,6 +10,13 @@
     <legend>Note</legend>
 
     <div class="display-label">
+         @Html.DisplayNameFor(model => model.SourceKey)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SourceKey)
+    </div>
+
+    <div class="display-label">
          @Html.DisplayNameFor(model => model.Title)
     </div>
     <div class="display-field">
@@ -21,6 +28,27 @@
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Value)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Tags)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tags)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedOn)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreatedOn)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastModified)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastModified)
     </div>
 </fieldset>
 <p>
