@@ -126,14 +126,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\NotesController.cs" />
     <Compile Include="Controllers\OrganizationsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IAuditable.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\NotechestDBContext.cs" />
@@ -249,11 +247,6 @@
     <Content Include="Views\Notes\Create.cshtml" />
     <Content Include="Views\Notes\Edit.cshtml" />
     <Content Include="Views\Notes\Delete.cshtml" />
-    <Content Include="Views\Comments\Index.cshtml" />
-    <Content Include="Views\Comments\Details.cshtml" />
-    <Content Include="Views\Comments\Create.cshtml" />
-    <Content Include="Views\Comments\Edit.cshtml" />
-    <Content Include="Views\Comments\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
