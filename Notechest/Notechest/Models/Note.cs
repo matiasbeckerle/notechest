@@ -17,7 +17,8 @@ namespace Notechest.Models
         [Required(ErrorMessage = "A title is required.")]
         public string Title { get; set; }
 
-        [Column(TypeName = "ntext")]
+        [DataType(DataType.MultilineText)]
+        [Required(ErrorMessage = "A value is required.")]
         public string Value { get; set; }
 
         public string Tags { get; set; }
