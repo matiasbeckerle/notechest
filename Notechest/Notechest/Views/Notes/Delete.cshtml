@@ -11,10 +11,17 @@
     <legend>Note</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.SourceKey)
+         @Html.DisplayNameFor(model => model.Organization.Name)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.SourceKey)
+        @Html.DisplayFor(model => model.Organization.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Project.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Project.Name)
     </div>
 
     <div class="display-label">

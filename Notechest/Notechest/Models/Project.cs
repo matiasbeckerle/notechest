@@ -10,12 +10,11 @@ namespace Notechest.Models
 {
     public class Project : IAuditable
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid ID { get; set; }
+        public int ID { get; set; }
 
         [Required(ErrorMessage = "An organization is required.")]
         [Display(Name = "Organization")]
-        public Guid OrganizationID { get; set; }
+        public int OrganizationID { get; set; }
 
         [Required(ErrorMessage = "A name is required.")]
         public string Name { get; set; }

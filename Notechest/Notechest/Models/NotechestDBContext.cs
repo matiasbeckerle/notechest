@@ -13,19 +13,6 @@ namespace Notechest.Models
         public DbSet<Project> Projects { get; set; }
         public DbSet<Note> Notes { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Note>().HasRequired(t => t.Project)
-                .WithMany(t => t.Notes)
-                .HasForeignKey(t => t.SourceKey)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Note>().HasRequired(t => t.Organization)
-                .WithMany(t => t.Notes)
-                .HasForeignKey(t => t.SourceKey)
-                .WillCascadeOnDelete(false);
-        }
-
         public override int SaveChanges()
         {
             foreach (var auditableEntity in ChangeTracker.Entries<IAuditable>())

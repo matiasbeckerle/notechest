@@ -232,6 +232,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Notes\Index.cshtml" />
+    <Content Include="Views\Notes\Details.cshtml" />
+    <Content Include="Views\Notes\Create.cshtml" />
+    <Content Include="Views\Notes\Edit.cshtml" />
+    <Content Include="Views\Notes\Delete.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Projects\Details.cshtml" />
     <Content Include="Views\Projects\Create.cshtml" />
@@ -242,11 +247,6 @@
     <Content Include="Views\Organizations\Create.cshtml" />
     <Content Include="Views\Organizations\Edit.cshtml" />
     <Content Include="Views\Organizations\Delete.cshtml" />
-    <Content Include="Views\Notes\Index.cshtml" />
-    <Content Include="Views\Notes\Details.cshtml" />
-    <Content Include="Views\Notes\Create.cshtml" />
-    <Content Include="Views\Notes\Edit.cshtml" />
-    <Content Include="Views\Notes\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

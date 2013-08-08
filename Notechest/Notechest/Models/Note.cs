@@ -9,10 +9,10 @@ namespace Notechest.Models
 {
     public class Note : IAuditable
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid ID { get; set; }
+        public int ID { get; set; }
 
-        public Guid SourceKey { get; set; }
+        public int? OrganizationID { get; set; }
+        public int? ProjectID { get; set; }
 
         [Required(ErrorMessage = "A title is required.")]
         public string Title { get; set; }
@@ -25,7 +25,8 @@ namespace Notechest.Models
         public DateTime CreatedOn { get; set; }
         public DateTime? LastModified { get; set; }
 
-        public Organization Organization { get; set; }
-        public Project Project { get; set; }
+        public virtual Organization Organization { get; set; }
+        public virtual Project Project { get; set; }
+
     }
 }

@@ -18,13 +18,14 @@ namespace Notechest.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Notes.ToList());
+            var notes = db.Notes.Include(n => n.Organization).Include(n => n.Project);
+            return View(notes.ToList());
         }
 
         //
         // GET: /Notes/Details/5
 
-        public ActionResult Details(Guid id)
+        public ActionResult Details(int id = 0)
         {
             Note note = db.Notes.Find(id);
             if (note == null)
@@ -39,6 +40,8 @@ namespace Notechest.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.OrganizationID = new SelectList(db.Organizations, "ID", "Name");
+            ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name");
             return View();
         }
 
@@ -51,25 +54,28 @@ namespace Notechest.Controllers
         {
             if (ModelState.IsValid)
             {
-                note.ID = Guid.NewGuid();
                 db.Notes.Add(note);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+            ViewBag.OrganizationID = new SelectList(db.Organizations, "ID", "Name", note.OrganizationID);
+            ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name", note.ProjectID);
             return View(note);
         }
 
         //
         // GET: /Notes/Edit/5
 
-        public ActionResult Edit(Guid id)
+        public ActionResult Edit(int id = 0)
         {
             Note note = db.Notes.Find(id);
             if (note == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.OrganizationID = new SelectList(db.Organizations, "ID", "Name", note.OrganizationID);
+            ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name", note.ProjectID);
             return View(note);
         }
 
@@ -86,13 +92,15 @@ namespace Notechest.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.OrganizationID = new SelectList(db.Organizations, "ID", "Name", note.OrganizationID);
+            ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name", note.ProjectID);
             return View(note);
         }
 
         //
         // GET: /Notes/Delete/5
 
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(int id = 0)
         {
             Note note = db.Notes.Find(id);
             if (note == null)
@@ -107,7 +115,7 @@ namespace Notechest.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Note note = db.Notes.Find(id);
             db.Notes.Remove(note);
