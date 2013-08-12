@@ -14,6 +14,12 @@ namespace Notechest
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "NotesCreate",
+                url: "{controller}/{action}/{type}/{id}",
+                defaults: new { controller = "Notes", action = "Create" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Projects", action = "Index", id = UrlParameter.Optional }

@@ -38,11 +38,23 @@ namespace Notechest.Controllers
         //
         // GET: /Notes/Create
 
-        public ActionResult Create()
+        public ActionResult Create(String type, int id)
         {
-            ViewBag.OrganizationID = new SelectList(db.Organizations, "ID", "Name");
-            ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name");
-            return View();
+            Note note = new Note();
+            
+            if(type == "Organization")
+            {
+                note.OrganizationID = id;
+            }
+            else if(type == "Project")
+            {
+                note.ProjectID = id;
+            }
+
+            ViewBag.OrganizationID = new SelectList(db.Organizations, "ID", "Name", note.OrganizationID);
+            ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name", note.ProjectID);
+
+            return View(note);
         }
 
         //
