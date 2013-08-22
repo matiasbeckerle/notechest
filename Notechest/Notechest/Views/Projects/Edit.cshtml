@@ -1,12 +1,12 @@
 ﻿@model Notechest.Models.Project
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = Model.ID > 0 ? "Edit" : "Add";
 }
 
-<h2>Edit</h2>
+<h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Save", "Projects")) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 

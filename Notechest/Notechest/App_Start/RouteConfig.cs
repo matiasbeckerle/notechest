@@ -15,7 +15,7 @@ namespace Notechest
 
             routes.MapRoute(
                 name: "NotesCreate",
-                url: "{controller}/{action}/{type}/{id}",
+                url: "{controller}/{action}/{type}/{key}",
                 defaults: new { controller = "Notes", action = "Create" }
             );
 

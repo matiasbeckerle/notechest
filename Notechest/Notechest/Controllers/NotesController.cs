@@ -13,7 +13,6 @@ namespace Notechest.Controllers
     {
         private NotechestDBContext db = new NotechestDBContext();
 
-        //
         // GET: /Notes/
 
         public ActionResult Index()
@@ -22,7 +21,6 @@ namespace Notechest.Controllers
             return View(notes.ToList());
         }
 
-        //
         // GET: /Notes/Details/5
 
         public ActionResult Details(int id = 0)
@@ -35,48 +33,26 @@ namespace Notechest.Controllers
             return View(note);
         }
 
-        //
         // GET: /Notes/Create
 
-        public ActionResult Create(String type, int id)
+        public ActionResult Create(String type, int key)
         {
             Note note = new Note();
-            
+
             if(type == "Organization")
             {
-                note.OrganizationID = id;
+                note.OrganizationID = key;
             }
             else if(type == "Project")
             {
-                note.ProjectID = id;
+                note.ProjectID = key;
             }
 
-            ViewBag.OrganizationID = new SelectList(db.Organizations, "ID", "Name", note.OrganizationID);
-            ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name", note.ProjectID);
+            setCollections(note);
 
-            return View(note);
+            return View("Edit", note);
         }
 
-        //
-        // POST: /Notes/Create
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Note note)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Notes.Add(note);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.OrganizationID = new SelectList(db.Organizations, "ID", "Name", note.OrganizationID);
-            ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name", note.ProjectID);
-            return View(note);
-        }
-
-        //
         // GET: /Notes/Edit/5
 
         public ActionResult Edit(int id = 0)
@@ -86,30 +62,38 @@ namespace Notechest.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.OrganizationID = new SelectList(db.Organizations, "ID", "Name", note.OrganizationID);
-            ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name", note.ProjectID);
+
+            setCollections(note);
+            
             return View(note);
         }
 
-        //
-        // POST: /Notes/Edit/5
+        // POST: /Notes/Save
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Note note)
+        public ActionResult Save(Note note)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(note).State = EntityState.Modified;
+                if (note.ID == 0)
+                {
+                    db.Notes.Add(note);
+                }
+                else
+                {
+                    db.Entry(note).State = EntityState.Modified;
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.OrganizationID = new SelectList(db.Organizations, "ID", "Name", note.OrganizationID);
-            ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name", note.ProjectID);
+
+            setCollections(note);
+
             return View(note);
         }
 
-        //
         // GET: /Notes/Delete/5
 
         public ActionResult Delete(int id = 0)
@@ -122,7 +106,6 @@ namespace Notechest.Controllers
             return View(note);
         }
 
-        //
         // POST: /Notes/Delete/5
 
         [HttpPost, ActionName("Delete")]
@@ -133,6 +116,12 @@ namespace Notechest.Controllers
             db.Notes.Remove(note);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        private void setCollections(Note note)
+        {
+            ViewBag.OrganizationID = new SelectList(db.Organizations, "ID", "Name", note.OrganizationID);
+            ViewBag.ProjectID = new SelectList(db.Projects, "ID", "Name", note.ProjectID);
         }
 
         protected override void Dispose(bool disposing)

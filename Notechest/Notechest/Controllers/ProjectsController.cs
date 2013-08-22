@@ -13,7 +13,6 @@ namespace Notechest.Controllers
     {
         private NotechestDBContext db = new NotechestDBContext();
 
-        //
         // GET: /Projects/
 
         public ActionResult Index()
@@ -22,7 +21,6 @@ namespace Notechest.Controllers
             return View(projects.ToList());
         }
 
-        //
         // GET: /Projects/Details/5
 
         public ActionResult Details(int id = 0)
@@ -35,34 +33,14 @@ namespace Notechest.Controllers
             return View(project);
         }
 
-        //
         // GET: /Projects/Create
 
         public ActionResult Create()
         {
             ViewBag.OrganizationID = new SelectList(db.Organizations, "ID", "Name");
-            return View();
+            return View("Edit", new Project());
         }
 
-        //
-        // POST: /Projects/Create
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Project project)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Projects.Add(project);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.OrganizationID = new SelectList(db.Organizations, "ID", "Name", project.OrganizationID);
-            return View(project);
-        }
-
-        //
         // GET: /Projects/Edit/5
 
         public ActionResult Edit(int id = 0)
@@ -76,24 +54,31 @@ namespace Notechest.Controllers
             return View(project);
         }
 
-        //
-        // POST: /Projects/Edit/5
+        // POST: /Projects/Save
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Project project)
+        public ActionResult Save(Project project)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(project).State = EntityState.Modified;
+                if (project.ID == 0)
+                {
+                    db.Projects.Add(project);
+                }
+                else
+                {
+                    db.Entry(project).State = EntityState.Modified;
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.OrganizationID = new SelectList(db.Organizations, "ID", "Name", project.OrganizationID);
             return View(project);
         }
 
-        //
         // GET: /Projects/Delete/5
 
         public ActionResult Delete(int id = 0)
@@ -106,7 +91,6 @@ namespace Notechest.Controllers
             return View(project);
         }
 
-        //
         // POST: /Projects/Delete/5
 
         [HttpPost, ActionName("Delete")]

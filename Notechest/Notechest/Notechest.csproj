@@ -239,17 +239,14 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Notes\Index.cshtml" />
     <Content Include="Views\Notes\Details.cshtml" />
-    <Content Include="Views\Notes\Create.cshtml" />
     <Content Include="Views\Notes\Edit.cshtml" />
     <Content Include="Views\Notes\Delete.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Projects\Details.cshtml" />
-    <Content Include="Views\Projects\Create.cshtml" />
     <Content Include="Views\Projects\Edit.cshtml" />
     <Content Include="Views\Projects\Delete.cshtml" />
     <Content Include="Views\Organizations\Index.cshtml" />
     <Content Include="Views\Organizations\Details.cshtml" />
-    <Content Include="Views\Organizations\Create.cshtml" />
     <Content Include="Views\Organizations\Edit.cshtml" />
     <Content Include="Views\Organizations\Delete.cshtml" />
   </ItemGroup>

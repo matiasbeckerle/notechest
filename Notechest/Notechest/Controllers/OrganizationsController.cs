@@ -13,7 +13,6 @@ namespace Notechest.Controllers
     {
         private NotechestDBContext db = new NotechestDBContext();
 
-        //
         // GET: /Organizations/
 
         public ActionResult Index()
@@ -21,7 +20,6 @@ namespace Notechest.Controllers
             return View(db.Organizations.ToList());
         }
 
-        //
         // GET: /Organizations/Details/5
 
         public ActionResult Details(int id = 0)
@@ -34,32 +32,13 @@ namespace Notechest.Controllers
             return View(organization);
         }
 
-        //
         // GET: /Organizations/Create
 
         public ActionResult Create()
         {
-            return View();
+            return View("Edit", new Organization());
         }
 
-        //
-        // POST: /Organizations/Create
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Organization organization)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Organizations.Add(organization);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(organization);
-        }
-
-        //
         // GET: /Organizations/Edit/5
 
         public ActionResult Edit(int id = 0)
@@ -72,23 +51,30 @@ namespace Notechest.Controllers
             return View(organization);
         }
 
-        //
-        // POST: /Organizations/Edit/5
+        // POST: /Organizations/Save
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Organization organization)
+        public ActionResult Save(Organization organization)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(organization).State = EntityState.Modified;
+                if (organization.ID == 0)
+                {
+                    db.Organizations.Add(organization);
+                }
+                else
+                {
+                    db.Entry(organization).State = EntityState.Modified;
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(organization);
         }
 
-        //
         // GET: /Organizations/Delete/5
 
         public ActionResult Delete(int id = 0)
@@ -101,7 +87,6 @@ namespace Notechest.Controllers
             return View(organization);
         }
 
-        //
         // POST: /Organizations/Delete/5
 
         [HttpPost, ActionName("Delete")]
